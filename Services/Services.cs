@@ -9,7 +9,7 @@ namespace discretlab.Services
 {
     internal class FileReader
     {
-        static string file = "C:\\Users\\АНЯ\\Desktop\\discretlab\\discretlab\\input.txt";
+        static readonly  string file = "C:\\Users\\АНЯ\\Desktop\\discretlab\\discretlab\\input.txt";
         public static (string[] A, List<(string, string)> pairs) ReadFile()
         {
         

@@ -13,3 +13,4 @@ C:\Users\АНЯ\Desktop\discretlab\discretlab\obj\Debug\net8.0\discretlab.pdb
 C:\Users\АНЯ\Desktop\discretlab\discretlab\obj\Debug\net8.0\discretlab.genruntimeconfig.cache
 C:\Users\АНЯ\Desktop\discretlab\discretlab\obj\Debug\net8.0\ref\discretlab.dll
 C:\Users\АНЯ\Desktop\discretlab\discretlab\bin\Debug\net8.0\input.txt
+C:\Users\АНЯ\Desktop\discretlab\discretlab\obj\Debug\net8.0\discretlab.sourcelink.json
