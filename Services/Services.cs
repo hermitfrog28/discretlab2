@@ -9,8 +9,8 @@ namespace discretlab.Services
 {
     internal class FileReader
     {
-        static readonly  string file = "C:\\Users\\АНЯ\\Desktop\\discretlab\\discretlab\\input.txt";
-        public static (string[] A, List<(string, string)> pairs) ReadFile()
+        readonly  string file = "C:\\Users\\АНЯ\\Desktop\\discretlab\\discretlab\\input.txt";
+        public (string[] A, List<(string, string)> pairs) ReadFile()
         {
         
             if (!File.Exists(file))

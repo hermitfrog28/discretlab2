@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace discretlab.Services
 {
-    internal static class PropertiesService
+    internal  class PropertiesService
     {
-        //опервции
-        public static bool[,] Or(bool[,] a, bool[,] b)
+        //операции
+        public  bool[,] Or(bool[,] a, bool[,] b)
         {
             int rows = a.GetLength(0);
             int cols = a.GetLength(1);
@@ -26,7 +25,7 @@ namespace discretlab.Services
 
             return c;
         }
-        public static bool[,] And(bool[,] a, bool[,] b)
+        public  bool[,] And(bool[,] a, bool[,] b)
         {
             int rows = a.GetLength(0);
             int cols = a.GetLength(1);
@@ -41,7 +40,7 @@ namespace discretlab.Services
             }
             return c;
         }
-        public static bool IsSubset(bool[,] a, bool[,] b)
+        public bool IsSubset(bool[,] a, bool[,] b)
         {
             int rows = a.GetLength(0);
             int cols = a.GetLength(1);
@@ -56,7 +55,7 @@ namespace discretlab.Services
             return true;
         }
 
-        private static bool AreEqual(bool[,] A, bool[,] B)
+        private  bool AreEqual(bool[,] A, bool[,] B)
         {
             int n = A.GetLength(0);
             for (int i = 0; i < n; i++)
@@ -68,7 +67,7 @@ namespace discretlab.Services
 
         //свойства
 
-        public static bool IsReflexive(bool[,] a)
+        public  bool IsReflexive(bool[,] a)
         {
             bool[,] I = new bool[a.GetLength(0), a.GetLength(1)];
             for (int i = 0; i < I.GetLength(0); i++)
@@ -81,7 +80,7 @@ namespace discretlab.Services
             }
             return false;
         }
-        public static bool IsIrreflexive(bool[,] a)
+        public  bool IsIrreflexive(bool[,] a)
         {
             bool[,] J = new bool[a.GetLength(0), a.GetLength(1)];
 
@@ -98,7 +97,7 @@ namespace discretlab.Services
 
 
         }
-        public static bool IsSymmetric(bool[,] a)
+        public  bool IsSymmetric(bool[,] a)
         {
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
             for (int i = 0; i < T.GetLength(0); i++)
@@ -115,7 +114,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public static bool IsAntisymmetric(bool[,] a)
+        public  bool IsAntisymmetric(bool[,] a)
         {
             //trans matr
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
@@ -145,7 +144,7 @@ namespace discretlab.Services
 
         }
 
-        public static bool IsAssymmetric(bool[,] a)
+        public bool IsAssymmetric(bool[,] a)
         {
             //trans matr
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
@@ -167,7 +166,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public static bool IsTransist(bool[,] a)
+        public  bool IsTransist(bool[,] a)
         {
             bool[,] P = new bool[a.GetLength(0), a.GetLength(1)];
             bool[,] b = a;
@@ -189,7 +188,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public static bool IsConnected(bool[,] a)
+        public  bool IsConnected(bool[,] a)
         {
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
             bool[,] J = new bool[a.GetLength(0), a.GetLength(1)];
@@ -221,6 +220,52 @@ namespace discretlab.Services
 
         }
 
+
+        public bool IsEqual(bool[,] a)
+        {
+            if (IsReflexive(a) && IsSymmetric(a) && IsTransist(a))
+            {
+                return true;
+            }
+            return false;
+        }
+        public List<List<string>> ClassOfEqual(bool[,] a, string[] A)
+        {
+            var sp = new List<List<string>>();
+            bool[] used = new bool[A.Length];
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (used[i])
+                {
+                    continue;
+                }
+                var Class = new List<string>();
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (a[i, j] == true)
+                    {
+                        Class.Add(A[j]);
+                        used[j] = true;
+                    }
+                }
+                sp.Add(Class);
+
+            }
+            Console.WriteLine("Классы эквивалентности:");
+            foreach(List<string> el in sp)
+            {
+                Console.Write("[ ");
+                for (int i = 0; i < el.Count; i++)
+                {
+                    Console.Write($"{el[i]} ");
+                }
+                Console.Write("] ");
+
+            }
+            return sp;
+            
+        }
 
     }
 }
