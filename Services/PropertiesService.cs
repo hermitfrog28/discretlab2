@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace discretlab.Services
 {
-    internal  class PropertiesService
+    internal class PropertiesService
     {
         //операции
-        public  bool[,] Or(bool[,] a, bool[,] b)
+        public bool[,] Or(bool[,] a, bool[,] b)
         {
             int rows = a.GetLength(0);
             int cols = a.GetLength(1);
@@ -25,7 +25,7 @@ namespace discretlab.Services
 
             return c;
         }
-        public  bool[,] And(bool[,] a, bool[,] b)
+        public bool[,] And(bool[,] a, bool[,] b)
         {
             int rows = a.GetLength(0);
             int cols = a.GetLength(1);
@@ -55,7 +55,7 @@ namespace discretlab.Services
             return true;
         }
 
-        private  bool AreEqual(bool[,] A, bool[,] B)
+        private bool AreEqual(bool[,] A, bool[,] B)
         {
             int n = A.GetLength(0);
             for (int i = 0; i < n; i++)
@@ -67,7 +67,7 @@ namespace discretlab.Services
 
         //свойства
 
-        public  bool IsReflexive(bool[,] a)
+        public bool IsReflexive(bool[,] a)
         {
             bool[,] I = new bool[a.GetLength(0), a.GetLength(1)];
             for (int i = 0; i < I.GetLength(0); i++)
@@ -80,7 +80,7 @@ namespace discretlab.Services
             }
             return false;
         }
-        public  bool IsIrreflexive(bool[,] a)
+        public bool IsIrreflexive(bool[,] a)
         {
             bool[,] J = new bool[a.GetLength(0), a.GetLength(1)];
 
@@ -97,7 +97,7 @@ namespace discretlab.Services
 
 
         }
-        public  bool IsSymmetric(bool[,] a)
+        public bool IsSymmetric(bool[,] a)
         {
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
             for (int i = 0; i < T.GetLength(0); i++)
@@ -114,7 +114,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public  bool IsAntisymmetric(bool[,] a)
+        public bool IsAntisymmetric(bool[,] a)
         {
             //trans matr
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
@@ -166,7 +166,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public  bool IsTransist(bool[,] a)
+        public bool IsTransist(bool[,] a)
         {
             bool[,] P = new bool[a.GetLength(0), a.GetLength(1)];
             bool[,] b = a;
@@ -188,7 +188,7 @@ namespace discretlab.Services
             return false;
         }
 
-        public  bool IsConnected(bool[,] a)
+        public bool IsConnected(bool[,] a)
         {
             bool[,] T = new bool[a.GetLength(0), a.GetLength(1)];
             bool[,] J = new bool[a.GetLength(0), a.GetLength(1)];
@@ -198,7 +198,7 @@ namespace discretlab.Services
                 {
                     if (a[i, j])
                     {
-                        T[j, i] =true;
+                        T[j, i] = true;
                     }
                 }
             }
@@ -253,7 +253,7 @@ namespace discretlab.Services
 
             }
             Console.WriteLine("Классы эквивалентности:");
-            foreach(List<string> el in sp)
+            foreach (List<string> el in sp)
             {
                 Console.Write("[ ");
                 for (int i = 0; i < el.Count; i++)
@@ -263,9 +263,112 @@ namespace discretlab.Services
                 Console.Write("] ");
 
             }
+            Console.WriteLine();
+            Console.WriteLine($"\nИндекс разбиения: {sp.Count}\n");
+
             return sp;
-            
+
         }
 
+        public bool IsOrderRelated(bool[,] a)
+        {
+            if (IsAntisymmetric(a) && IsReflexive(a) && IsTransist(a)) return true;
+            return false;
+        }
+
+        public void MaxMin(bool[,] a, string[] A)
+        {
+            List<string> min = new List<string>();
+            List<string> max = new List<string>();
+
+            for (int i = 0; i < A.Length; i++)
+            {
+                bool IsMin = true;
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (a[j, i] && j != i)
+                    {
+                        IsMin = false;
+                        break;
+                    }
+                }
+                if (IsMin)
+                {
+                    min.Add(A[i]);
+                }
+            }
+            Console.WriteLine($"\nМинимальное значение: {min[0]}");
+            for (int i = 0; i < A.Length; i++)
+            {
+                bool IsMax = true;
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (a[i, j] && i != j)
+                    {
+                        IsMax = false;
+                        break;
+                    }
+                }
+                if (IsMax)
+                {
+                    max.Add(A[i]);
+                }
+            }
+            Console.WriteLine($"\nМаксимальное значение: {max[0]}");
+
+            string smallest = null;
+            for (int i = 0; i < A.Length; i++)
+            {
+                bool IsSm = true;
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (!a[i, j])
+                    {
+                        IsSm = false;
+                        break;
+                    }
+                }
+                if (IsSm)
+                {
+                    smallest = A[i];
+                    break;
+                }
+            }
+            if (smallest != null)
+            {
+                Console.WriteLine($"\nНаименьшее значение: {smallest}");
+            }
+            else
+            {
+                Console.WriteLine("Нет наименьшего значения.");
+            }
+
+            string largest = null;
+            for (int i = 0; i < A.Length; i++)
+            {
+                bool IsL = true;
+                for (int j = 0; j < A.Length; j++)
+                {
+                    if (!a[j, i])
+                    {
+                        IsL = false;
+                        break;
+                    }
+                }
+                if (IsL)
+                {
+                    largest = A[i];
+                    break;
+                }
+            }
+            if (largest != null)
+            {
+                Console.WriteLine($"\nНаибольшее значение: {largest}");
+            }
+            else
+            {
+                Console.WriteLine("Нет наибольшего значения.");
+            }
+        }
     }
 }
