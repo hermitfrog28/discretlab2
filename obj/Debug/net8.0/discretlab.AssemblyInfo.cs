@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("discretlab")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8149a8d8dfd40105975a26ed61ba43f65b92467b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99465ae6d8684cd3d029724be966dd6b5efe910f")]
 [assembly: System.Reflection.AssemblyProductAttribute("discretlab")]
 [assembly: System.Reflection.AssemblyTitleAttribute("discretlab")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

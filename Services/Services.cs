@@ -80,20 +80,23 @@ namespace discretlab.Services
                     Matrix[row, col] = true;
                 }
             }
-            Console.WriteLine("  "+ string.Join(" ", A) );
-            
+                       
+        }
+        public void Print(string[] A) 
+        {
+            Console.WriteLine("  " + string.Join(" ", A));
+
             for (int i = 0; i < Elements.Length; i++)
             {
                 Console.Write(Elements[i] + " ");
                 for (int j = 0; j < Elements.Length; j++)
                 {
                     Console.Write(Matrix[i, j] ? "1 " : "0 ");
-                    
+
                 }
                 Console.WriteLine();
-            }               
+            }
         }
-
     }
 
 }

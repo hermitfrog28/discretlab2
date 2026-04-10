@@ -9,6 +9,10 @@ class Program
 
         CreateMatrix relMatrix = new CreateMatrix(A, pairs);
 
+        Console.WriteLine("Матрица отношений");
+
+        relMatrix.Print(A);
+
         Console.WriteLine("\nСвойства отношений:\n");
 
         PropertiesService matr = new PropertiesService();
