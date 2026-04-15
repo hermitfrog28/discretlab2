@@ -215,7 +215,7 @@ namespace discretlab.Services
             {
                 I[i, i] = true;
             }
-            bool[,] G = Or(a, T);
+            
             return AreEqual(Or(Or(a, T), I), J);
 
         }
@@ -297,7 +297,12 @@ namespace discretlab.Services
                     min.Add(A[i]);
                 }
             }
-            Console.WriteLine($"\nМинимальное значение: {min[0]}");
+            Console.Write($"\nМинимальное значение: ");
+            foreach (var el in min)
+            {
+                Console.Write(el + " ");
+            }
+            Console.WriteLine();
             for (int i = 0; i < A.Length; i++)
             {
                 bool IsMax = true;
@@ -314,8 +319,12 @@ namespace discretlab.Services
                     max.Add(A[i]);
                 }
             }
-            Console.WriteLine($"\nМаксимальное значение: {max[0]}");
-
+            Console.Write($"Максимальное значение: ");
+            foreach (var el in max)
+            {
+                Console.Write(el+ " ");
+            }
+            Console.WriteLine() ;
             string smallest = null;
             for (int i = 0; i < A.Length; i++)
             {
